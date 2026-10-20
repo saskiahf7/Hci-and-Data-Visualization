@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human-Centered Dashboard Design</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;700&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fdfbf7;
+      color: #111827;
+    }
+
+    .font-brut {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* Neo-Brutalist Hard Shadows */
+    .brut-card {
+      background: #ffffff;
+      border: 3px solid #111827;
+      box-shadow: 6px 6px 0px #111827;
+    }
+
+    .brut-card-accent {
+      background: #4f46e5;
+      border: 3px solid #111827;
+      box-shadow: 6px 6px 0px #111827;
+      color: #ffffff;
+    }
+
+    .brut-btn {
+      background: #10b981;
+      border: 3px solid #111827;
+      box-shadow: 4px 4px 0px #111827;
+      transition: all 0.1s ease;
+    }
+
+    .brut-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #111827;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-amber-300 selection:text-black">
+
+  <!-- Brutalist Header -->
+  <header class="w-full bg-[#111827] text-white border-b-4 border-black sticky top-0 z-50 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-indigo-500 border-2 border-white flex items-center justify-center font-brut font-black text-xl">
+          H
+        </div>
+        <div>
+          <h1 class="text-sm font-brut font-bold tracking-wider uppercase text-amber-300">Human-Centered Dashboard</h1>
+          <p class="text-[11px] text-slate-300">Informatika Universitas Bengkulu</p>
+        </div>
+      </div>
+      <div class="px-4 py-1 rounded-none bg-amber-400 text-black font-brut font-bold text-xs border-2 border-white">
+        BRIN Lecture Series
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-12 flex-1 space-y-12 w-full">
+
+    <!-- Hero Section -->
+    <section class="brut-card p-8 md:p-12 relative overflow-hidden">
+      <div class="absolute top-0 right-0 bg-amber-300 border-l-3 border-b-3 border-black px-6 py-2 font-brut font-black text-xs uppercase tracking-widest">
+        Session 2026 // BRIN Researcher
+      </div>
+
+      <div class="space-y-6 max-w-4xl">
+        <span class="inline-block px-3 py-1 bg-indigo-100 border-2 border-black font-brut font-bold text-xs">
+          <i class="fa-solid fa-chalkboard-user mr-1 text-indigo-600"></i> Kuliah Praktisi Ahli
+        </span>
+
+        <h2 class="text-3xl md:text-5xl font-brut font-black tracking-tight leading-none text-black">
+          Human-Computer Interaction & Data Visualization
+        </h2>
+
+        <div class="p-4 bg-amber-50 border-2 border-black font-medium text-sm">
+          <p><strong class="font-brut">Narasumber:</strong> Bapak Arafat Febriandirza, Ph.D. <span class="text-slate-600 block sm:inline">(Lead of Research Group for Human-Computer Interaction and Visualization, BRIN)</span></p>
+        </div>
+
+        <p class="text-slate-700 text-base leading-relaxed font-normal">
+          Membahas tuntas bagaimana merancang antarmuka sistem digital yang intuitif, selaras dengan psikologi kognitif manusia, serta teknik menyajikan data kompleks menjadi visualisasi interaktif yang bermakna untuk pengambilan keputusan strategis.
+        </p>
+      </div>
+    </section>
+
+    <!-- Bento Grid Section -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Interactive Heuristics Checker -->
+      <div class="lg:col-span-6 brut-card p-6 md:p-8 space-y-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b-3 border-black pb-3 mb-4">
+            <h3 class="font-brut font-black text-lg uppercase flex items-center gap-2">
+              <i class="fa-solid fa-list-check text-indigo-600"></i> Nielsen's Heuristics Evaluator
+            </h3>
+            <span class="text-xs font-mono font-bold bg-indigo-100 px-2 py-1 border border-black">10 Prinsip</span>
+          </div>
+          <p class="text-xs text-slate-600 mb-4">Pilih salah satu prinsip evaluasi pakar interaksi untuk melihat contoh implementasinya:</p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 font-brut text-xs">
+            <button onclick="showHeuristic(1)" id="hBtn1" class="p-3 text-left bg-indigo-600 text-white border-2 border-black font-bold shadow-[2px_2px_0px_#000]">1. Visibility of System Status</button>
+            <button onclick="showHeuristic(2)" id="hBtn2" class="p-3 text-left bg-white text-black border-2 border-black font-bold shadow-[2px_2px_0px_#000]">2. Match Real World</button>
+            <button onclick="showHeuristic(3)" id="hBtn3" class="p-3 text-left bg-white text-black border-2 border-black font-bold shadow-[2px_2px_0px_#000]">3. User Control & Freedom</button>
+            <button onclick="showHeuristic(4)" id="hBtn4" class="p-3 text-left bg-white text-black border-2 border-black font-bold shadow-[2px_2px_0px_#000]">4. Consistency & Standards</button>
+          </div>
+        </div>
+
+        <div id="heuristicBox" class="p-4 bg-amber-100 border-2 border-black text-xs space-y-2">
+          <p class="font-brut font-bold text-sm text-black">Visibility of System Status</p>
+          <p class="text-slate-800">Sistem harus selalu memberikan informasi kepada pengguna tentang apa yang sedang terjadi melalui umpan balik (feedback) yang jelas dan tepat waktu (contoh: loading bar, status pengiriman).</p>
+        </div>
+      </div>
+
+      <!-- Chart: Visualization Type Distribution -->
+      <div class="lg:col-span-6 brut-card p-6 md:p-8 space-y-4 flex flex-col justify-between">
+        <div class="border-b-3 border-black pb-3">
+          <h3 class="font-brut font-black text-lg uppercase flex items-center gap-2">
+            <i class="fa-solid fa-chart-column text-emerald-600"></i> Efektivitas Jenis Visualisasi Data
+          </h3>
+          <p class="text-xs text-slate-600">Kesesuaian grafik dengan karakteristik informasi yang disampaikan</p>
+        </div>
+
+        <div class="h-64 flex justify-center items-center">
+          <canvas id="hciBarChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Data Dashboard Simulator -->
+    <section class="brut-card p-6 md:p-10 space-y-6">
+      <div class="border-b-3 border-black pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <h3 class="font-brut font-black text-xl uppercase flex items-center gap-2">
+            <i class="fa-solid fa-sliders text-indigo-600"></i> Simulator Filter & Detail Dashboard Interaktif
+          </h3>
+          <p class="text-xs text-slate-600">Menerapkan prinsip "Overview first, zoom and filter, details on demand" sesuai materi riset BRIN.</p>
+        </div>
+        <div class="px-3 py-1 bg-emerald-300 border-2 border-black font-brut font-bold text-xs">
+          Live Filter Active
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Controls -->
+        <div class="space-y-4 md:col-span-1 p-4 bg-slate-50 border-2 border-black">
+          <div>
+            <label class="block font-brut font-bold text-xs uppercase mb-1">Filter Wilayah Regional:</label>
+            <select id="regionSelect" onchange="updateDashboard()" class="w-full bg-white border-2 border-black p-2.5 font-bold text-xs focus:outline-none">
+              <option value="all">Seluruh Wilayah Nasional (Macro)</option>
+              <option value="jawa">Wilayah Jawa & Bali</option>
+              <option value="sumatera">Wilayah Sumatera (Bengkulu Focus)</option>
+              <option value="timur">Wilayah Indonesia Timur</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-brut font-bold text-xs uppercase mb-1">Metrik Analisis Utama:</label>
+            <select id="metricSelect" onchange="updateDashboard()" class="w-full bg-white border-2 border-black p-2.5 font-bold text-xs focus:outline-none">
+              <option value="usage">Tingkat Adopsi Teknologi Digital</option>
+              <option value="satisfaction">Indeks Kepuasan Pengguna (UX)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dynamic Output Display -->
+        <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+          <div class="p-5 bg-indigo-50 border-3 border-black shadow-[4px_4px_0px_#111] flex flex-col justify-between h-36">
+            <span class="font-brut font-bold text-xs uppercase text-indigo-900">Total Sampel Data (Overview):</span>
+            <div>
+              <p id="statCount" class="font-brut font-black text-3xl text-indigo-700">14,250</p>
+              <p id="statDesc" class="text-xs font-semibold text-slate-700 mt-0.5">Responden Riset Aktif</p>
+            </div>
+          </div>
+
+          <div class="p-5 bg-amber-50 border-3 border-black shadow-[4px_4px_0px_#111] flex flex-col justify-between h-36">
+            <span class="font-brut font-bold text-xs uppercase text-amber-900">Indeks Performa (Details):</span>
+            <div>
+              <p id="statScore" class="font-brut font-black text-3xl text-amber-700">94.8%</p>
+              <p id="statStatus" class="text-xs font-bold text-emerald-700 mt-0.5">Sangat Efektif & Intuitif</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Brutalist Footer -->
+  <footer class="border-t-4 border-black bg-white py-8 text-center text-xs space-y-1">
+    <p class="font-brut font-bold uppercase">© 2026 Human-Centered Dashboard Design Portfolio</p>
+    <p class="text-slate-600 font-medium">Program Studi Informatika, Fakultas Teknik, Universitas Bengkulu</p>
+  </footer>
+
+  <!-- Script Interactions -->
+  <script>
+    // 1. Bar Chart Configuration
+    const ctxBar = document.getElementById('hciBarChart').getContext('2d');
+    new Chart(ctxBar, {
+      type: 'bar',
+      data: {
+        labels: ['Line (Trend Time)', 'Bar (Comparison)', 'Scatter (Correlation)', 'Pie (Proportion)', 'Heatmap (Spatial)'],
+        datasets: [{
+          label: 'Tingkat Kejelasan Informasi',
+          data: [95, 90, 85, 70, 92],
+          backgroundColor: '#4f46e5',
+          borderColor: '#111827',
+          borderWidth: 2,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: { grid: { color: '#e5e7eb' }, ticks: { font: { family: 'Inter', weight: 'bold' } } },
+          x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 10, weight: 'bold' } } }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+    // 2. Heuristics Selector
+    const heuristicsData = {
+      1: {
+        title: "1. Visibility of System Status",
+        desc: "Sistem harus selalu memberikan informasi kepada pengguna tentang apa yang sedang terjadi melalui umpan balik (feedback) yang jelas dan tepat waktu (contoh: loading bar, status pengiriman)."
+      },
+      2: {
+        title: "2. Match Between System and Real World",
+        desc: "Sistem harus menggunakan bahasa, kata, frasa, dan konsep yang akrab bagi pengguna, bukan istilah teknis internal (contoh: ikon keranjang belanja pada e-commerce)."
+      },
+      3: {
+        title: "3. User Control and Freedom",
+        desc: "Pengguna sering salah memilih fungsi sistem dan memerlukan 'pintu darurat' yang jelas untuk keluar dari status tidak diinginkan tanpa harus melewati proses rumit (fitur Undo/Redo)."
+      },
+      4: {
+        title: "4. Consistency and Standards",
+        desc: "Pengguna tidak perlu menebak apakah kata, situasi, atau tindakan berbeda memiliki arti yang sama. Patuhi konvensi platform industri digital."
+      }
+    };
+
+    function showHeuristic(id) {
+      for(let i=1; i<=4; i++) {
+        document.getElementById(`hBtn${i}`).className = "p-3 text-left bg-white text-black border-2 border-black font-bold shadow-[2px_2px_0px_#000]";
+      }
+      document.getElementById(`hBtn${id}`).className = "p-3 text-left bg-indigo-600 text-white border-2 border-black font-bold shadow-[2px_2px_0px_#000]";
+      
+      document.getElementById('heuristicBox').innerHTML = `
+        <p class="font-brut font-bold text-sm text-black">${heuristicsData[id].title}</p>
+        <p class="text-slate-800">${heuristicsData[id].desc}</p>
+      `;
+    }
+
+    // 3. Dashboard Simulator Logic
+    function updateDashboard() {
+      const region = document.getElementById('regionSelect').value;
+      const metric = document.getElementById('metricSelect').value;
+
+      let count = "14,250";
+      let desc = "Responden Riset Aktif";
+      let score = "94.8%";
+      let status = "Sangat Efektif & Intuitif";
+
+      if(region === 'jawa') {
+        count = "6,820"; desc = "Sampel Kawasan Jawa-Bali"; score = "96.2%";
+      } else if(region === 'sumatera') {
+        count = "4,150"; desc = "Sampel Kawasan Sumatera (Unib Focus)"; score = "93.5%";
+      } else if(region === 'timur') {
+        count = "3,280"; desc = "Sampel Kawasan Indonesia Timur"; score = "91.0%";
+      }
+
+      if(metric === 'satisfaction') {
+        score = region === 'sumatera' ? "95.1%" : "96.7%";
+        status = "Indeks UX Sangat Tinggi";
+      }
+
+      document.getElementById('statCount').innerText = count;
+      document.getElementById('statDesc').innerText = desc;
+      document.getElementById('statScore').innerText = score;
+      document.getElementById('statStatus').innerText = status;
+    }
+  </script>
+</body>
+</html>
