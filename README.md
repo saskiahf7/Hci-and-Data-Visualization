@@ -1,7 +1,7 @@
 # human-centered-dashboard-design
 
 🌐 **Akses Website Live Demo:**  
-https://saskiahf7.github.io/human-centered-dashboard-design/
+https://saskiahf7.github.io/Hci-and-Data-Visualization/
 
 ---
 
